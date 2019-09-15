@@ -1,0 +1,49 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Module_Motor_DC.Views"
+             xmlns:dxc="http://schemas.devexpress.com/winfx/2008/xaml/charts" x:Class="Module_Motor_DC.Views.SpeedView"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Border Background="White" CornerRadius="1">
+            <Border.Effect>
+                <DropShadowEffect Color="#FFC1C1C1" ShadowDepth="3"/>
+            </Border.Effect>
+        </Border>
+        <dxc:ChartControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{x:Null}">
+            <dxc:ChartControl.Titles>
+                <dxc:Title Content="DC Motor Responses" HorizontalAlignment="Center" Margin="0,0,0,15" VerticalAlignment="Top"/>
+            </dxc:ChartControl.Titles>
+            <dxc:ChartControl.Legends>
+                <dxc:Legend Visibility="Hidden" Visible="False"/>
+            </dxc:ChartControl.Legends>
+            <dxc:XYDiagram2D Margin="-15 -15 -10 -15">
+                <dxc:XYDiagram2D.AxisY>
+                    <dxc:AxisY2D>
+                        <dxc:AxisY2D.ConstantLinesBehind>
+                            <dxc:ConstantLine Value="{Binding Path=data.SetPoint}">
+                                <dxc:ConstantLine.Title>
+                                    <dxc:ConstantLineTitle Content="Set Point"/>
+                                </dxc:ConstantLine.Title>
+                            </dxc:ConstantLine>
+                        </dxc:AxisY2D.ConstantLinesBehind>
+                        <dxc:AxisY2D.Title>
+                            <dxc:AxisTitle Content="Speed (RPM)"/>
+                        </dxc:AxisY2D.Title>
+                    </dxc:AxisY2D>
+                </dxc:XYDiagram2D.AxisY>
+                <dxc:XYDiagram2D.AxisX>
+                    <dxc:AxisX2D Alignment="Near" StickToEnd="True">
+                        <dxc:AxisX2D.Title>
+                            <dxc:AxisTitle Content="Time (Seconds)" VerticalAlignment="Top"/>
+                        </dxc:AxisX2D.Title>
+                    </dxc:AxisX2D>
+                </dxc:XYDiagram2D.AxisX>
+                <dxc:LineSeries2D x:Name="SpeedChart" DataSource="{Binding Path=dataCollection}" ArgumentDataMember="Time" ValueDataMember="Speed"/>
+            </dxc:XYDiagram2D>
+        </dxc:ChartControl>
+    </Grid>
+</UserControl>
